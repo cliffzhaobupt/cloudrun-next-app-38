@@ -1,8 +1,9 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
+import styles from './page.module.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
+const lovely = 'cute';
 
 export default function Home() {
   return (
@@ -87,5 +88,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
