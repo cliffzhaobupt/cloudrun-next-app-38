@@ -10,7 +10,10 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         <p>
-          Get started by editing&nbsp;
+          哇哦 好棒啊！
+          <br />
+          这是测试啊 哇哦！
+          <br /> Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
         </p>
         <div>
