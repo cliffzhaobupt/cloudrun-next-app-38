@@ -1,4 +1,4 @@
-import './globals.css';
+import './reset.css';
 
 export const metadata = {
   title: 'Create Next App',
