@@ -1,6 +1,6 @@
 import { Breed } from './entities';
 
 export type GetBreedsResponse = {
-  current_page: number;
   data: Breed[];
+  next_page_url: string;
 };
