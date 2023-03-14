@@ -1,4 +1,5 @@
 import { getBreeds } from '../../domain/breed/services/getBreeds';
+import { BreedsClientPage } from './clientPage';
 
 export const metadata = {
   title: 'Breed List Page',
@@ -6,16 +7,12 @@ export const metadata = {
 };
 
 export default async function BreedsPage() {
-  const { data: breeds } = await getBreeds();
+  const fallbackData = [await getBreeds({ page: 1 })];
 
   return (
     <>
       <h1>Breeds</h1>
-      <ul>
-        {breeds.map(({ breed }) => (
-          <li key={breed}>Breed: {breed}</li>
-        ))}
-      </ul>
+      <BreedsClientPage fallbackData={fallbackData} />
     </>
   );
 }
