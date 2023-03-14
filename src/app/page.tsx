@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 export const metadata = {
   title: 'Home Page',
   description: 'This is a lovely home page',
