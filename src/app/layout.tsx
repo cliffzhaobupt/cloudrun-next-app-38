@@ -14,6 +14,9 @@ export default function RootLayout({
             <li>
               <Link href="/breeds">Breeds</Link>
             </li>
+            <li>
+              <Link href="/">Back to Top</Link>
+            </li>
           </ul>
         </nav>
         <main>{children}</main>
