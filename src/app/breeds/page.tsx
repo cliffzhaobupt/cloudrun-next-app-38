@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import { getBreeds } from '../../domain/breed/services/getBreeds';
 import { BreedsClientPage } from './clientPage';
 

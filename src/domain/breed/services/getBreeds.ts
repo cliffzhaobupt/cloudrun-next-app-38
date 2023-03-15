@@ -6,7 +6,7 @@ export async function getBreeds({
   page?: number;
 }): Promise<GetBreedsResponse> {
   const res = await fetch(`https://catfact.ninja/breeds?page=${page}`, {
-    cache: 'no-cache',
+    next: { revalidate: 60 },
   });
 
   return res.json();
