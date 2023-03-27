@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import { Header } from '../domain/ui/components/Header';
+import { Providers } from './providers';
 import './reset.css';
 
 export default function RootLayout({
@@ -9,17 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/breeds">Breeds</Link>
-            </li>
-            <li>
-              <Link href="/">Back to Top</Link>
-            </li>
-          </ul>
-        </nav>
-        <main>{children}</main>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
