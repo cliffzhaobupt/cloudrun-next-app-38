@@ -18,6 +18,9 @@ export const Header: React.FC<Props> = ({ isLoadingAuth, isLoggedIn }) => {
             <Link href="/breeds">{t('layout_breed_list_link')}</Link>
           </li>
           <li>
+            <Link href="/bitcoin">{t('layout_bitcoin_link')}</Link>
+          </li>
+          <li>
             <Link href="/">{t('layout_back_to_top_btn_label')}</Link>
           </li>
           <li>
