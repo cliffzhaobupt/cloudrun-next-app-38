@@ -1,4 +1,4 @@
-import { Breed } from './entities';
+import type { Breed } from './entities';
 
 export type GetBreedsResponse = {
   data: Breed[];

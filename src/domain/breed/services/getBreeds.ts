@@ -1,4 +1,4 @@
-import { GetBreedsResponse } from '../apiTypes';
+import type { GetBreedsResponse } from '../apiTypes';
 
 export async function getBreeds({
   page = 1,

@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
 import { getBreeds } from '@/domain/breed/services/getBreeds';
-import { I18nDictionary } from '@/i18n/types';
+import type { I18nDictionary } from '@/i18n/types';
+import type { Metadata } from 'next';
 import { BreedsClientPage } from './clientPage';
 
 export async function generateMetadata({

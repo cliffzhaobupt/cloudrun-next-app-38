@@ -1,8 +1,8 @@
-import { GetBreedsResponse } from '../apiTypes';
-import { Breed } from '../entities';
 import useSWRInfinite from 'swr/infinite';
 import { getBreedsSwrFetcher } from '../services/getBreeds';
 import { useCallback } from 'react';
+import type { GetBreedsResponse } from '../apiTypes';
+import type { Breed } from '../entities';
 
 export function useGetBreedsInfinite({
   fallbackData,

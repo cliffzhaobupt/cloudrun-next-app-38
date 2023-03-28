@@ -19,6 +19,7 @@ export default async function RootLayout({
       <body>
         <Providers locale={lang} dictionary={dictionary}>
           <Header />
+          <br />
           <main>{children}</main>
         </Providers>
       </body>
