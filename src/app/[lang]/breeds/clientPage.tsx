@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { GetBreedsResponse } from '../../../domain/breed/apiTypes';
-import { useGetBreedsInfinite } from '../../../domain/breed/hooks/useGetBreedsInfinite';
-import { useI18n } from '../../../i18n/useI18n';
+import { GetBreedsResponse } from '@/domain/breed/apiTypes';
+import { useGetBreedsInfinite } from '@/domain/breed/hooks/useGetBreedsInfinite';
+import { useI18n } from '@/i18n/useI18n';
 
 interface Props {
   fallbackData: GetBreedsResponse[];

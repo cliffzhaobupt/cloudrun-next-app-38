@@ -1,6 +1,6 @@
+import { useI18n } from '@/i18n/useI18n';
 import Link from 'next/link';
 import React from 'react';
-import { useI18n } from '../../../../i18n/useI18n';
 
 interface Props {
   isLoadingAuth: boolean;

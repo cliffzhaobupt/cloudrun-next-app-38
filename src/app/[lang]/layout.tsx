@@ -1,4 +1,4 @@
-import { Header } from '../../domain/ui/components/Header';
+import { Header } from '@/domain/ui/components/Header';
 import { Providers } from './providers';
 import '../reset.css';
 
@@ -9,7 +9,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-  const { dictionary } = await import(`../../i18n/dictionaries/${lang}`);
+  const { dictionary } = await import(`@/i18n/dictionaries/${lang}`);
 
   return (
     <html lang={lang}>
