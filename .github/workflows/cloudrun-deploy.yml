@@ -9,6 +9,7 @@ env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_ID }}
   CLOUD_RUN_REGION: asia-northeast1
   REPO_NAME: cloudrun-next-app-38
+  ENV_VARS_FILE: ./env-vars-dev.yml
 
 jobs:
   build-and-deploy:
@@ -39,4 +40,5 @@ jobs:
             --platform managed \
             --region $CLOUD_RUN_REGION \
             --allow-unauthenticated \
+            --env-vars-file $ENV_VARS_FILE \
             --quiet

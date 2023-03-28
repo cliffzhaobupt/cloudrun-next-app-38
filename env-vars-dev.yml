@@ -1,0 +1,4 @@
+ENV: 'dev'
+
+BASIC_AUTH_USERNAME: 'cute'
+BASIC_AUTH_PASSWORD: 'lovely'
