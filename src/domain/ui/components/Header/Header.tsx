@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { useI18n } from '../../../../i18n/useI18n';
 
 interface Props {
   isLoadingAuth: boolean;
@@ -7,15 +8,17 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({ isLoadingAuth, isLoggedIn }) => {
+  const { t } = useI18n();
+
   return (
     <header>
       <nav>
         <ul>
           <li>
-            <Link href="/breeds">Breeds</Link>
+            <Link href="/breeds">{t('layout_breed_list_link')}</Link>
           </li>
           <li>
-            <Link href="/">Back to Top</Link>
+            <Link href="/">{t('layout_back_to_top_btn_label')}</Link>
           </li>
           <li>
             {isLoadingAuth && <span>Loading auth...</span>}

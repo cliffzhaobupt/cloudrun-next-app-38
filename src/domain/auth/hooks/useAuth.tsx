@@ -19,7 +19,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log('document.cookie', document.cookie);
     if (document.cookie.includes('token')) {
       setIsLoggedIn(true);
     }
