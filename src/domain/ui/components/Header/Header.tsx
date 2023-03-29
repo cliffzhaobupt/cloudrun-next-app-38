@@ -1,13 +1,20 @@
-import { useI18n } from '@/i18n/useI18n';
+import { useI18n } from '@/libs/i18n/hooks/useI18n';
 import Link from 'next/link';
 import React from 'react';
 
 interface Props {
   isLoadingAuth: boolean;
   isLoggedIn: boolean;
+  onClickLoginButton(): void;
+  onClickLogoutButton(): void;
 }
 
-export const Header: React.FC<Props> = ({ isLoadingAuth, isLoggedIn }) => {
+export const Header: React.FC<Props> = ({
+  isLoadingAuth,
+  isLoggedIn,
+  onClickLoginButton,
+  onClickLogoutButton,
+}) => {
   const { t } = useI18n();
 
   return (
@@ -27,9 +34,13 @@ export const Header: React.FC<Props> = ({ isLoadingAuth, isLoggedIn }) => {
             {isLoadingAuth && <span>Loading auth...</span>}
             {!isLoadingAuth &&
               (isLoggedIn ? (
-                <span>Logged in</span>
+                <button type="button" onClick={onClickLogoutButton}>
+                  Logout
+                </button>
               ) : (
-                <Link href="/login">Login</Link>
+                <button type="button" onClick={onClickLoginButton}>
+                  Login
+                </button>
               ))}
           </li>
         </ul>

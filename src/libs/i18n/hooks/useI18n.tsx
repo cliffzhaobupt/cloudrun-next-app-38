@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext } from 'react';
-import { i18n } from './config';
-import type { I18nDictionary, I18nDictKey } from './types';
+import { i18n } from '../config';
+import type { I18nDictionary, I18nDictKey } from '../types';
 
 type I18nContextType = {
   locale: string;

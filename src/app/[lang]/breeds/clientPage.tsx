@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useGetBreedsInfinite } from '@/domain/breed/hooks/useGetBreedsInfinite';
-import { useI18n } from '@/i18n/useI18n';
+import { useI18n } from '@/libs/i18n/hooks/useI18n';
 import type { GetBreedsResponse } from '@/domain/breed/apiTypes';
 
 interface Props {

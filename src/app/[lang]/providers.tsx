@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { I18nProvider } from '@/i18n/useI18n';
-import { AuthProvider } from '@/domain/auth/hooks/useAuth';
-import type { I18nDictionary } from '@/i18n/types';
+import { I18nProvider } from '@/libs/i18n/hooks/useI18n';
+import { AuthProvider } from '@/libs/auth/hooks/useAuth';
+import type { I18nDictionary } from '@/libs/i18n/types';
 
 interface Props {
   locale: string;

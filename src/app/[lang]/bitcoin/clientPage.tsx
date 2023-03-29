@@ -1,14 +1,16 @@
 'use client';
 
 import React from 'react';
-import { useI18n } from '@/i18n/useI18n';
+import { useI18n } from '@/libs/i18n/hooks/useI18n';
 import type { BitcoinInfo } from '@/domain/bitcoin/entities';
+import { useGuestRedirect } from '@/libs/auth/hooks/useGuestRedirect';
 
 interface Props {
   bitcoinInfo: BitcoinInfo;
 }
 
 export const BitcoinClientPage: React.FC<Props> = ({ bitcoinInfo }) => {
+  useGuestRedirect();
   const { t } = useI18n();
 
   return (

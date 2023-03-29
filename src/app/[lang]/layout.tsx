@@ -9,7 +9,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { lang: string };
 }) {
-  const { dictionary } = await import(`@/i18n/dictionaries/${lang}`);
+  const { dictionary } = await import(`@/libs/i18n/dictionaries/${lang}`);
 
   return (
     <html lang={lang}>

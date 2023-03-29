@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { i18n } from './i18n/config';
-import { extractLocale } from './i18n/extractLocale';
+import { i18n } from './libs/i18n/config';
+import { extractLocale } from './libs/i18n/extractLocale';
 
 export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;

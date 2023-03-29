@@ -3,11 +3,13 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 type AuthContextType = {
   isLoading: boolean;
   isLoggedIn: boolean;
+  setIsLoggedIn(loggedIn: boolean): void;
 };
 
 const AuthContext = createContext<AuthContextType>({
   isLoading: true,
   isLoggedIn: false,
+  setIsLoggedIn: () => null,
 });
 
 interface AuthProviderProps {
@@ -30,6 +32,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       value={{
         isLoading,
         isLoggedIn,
+        setIsLoggedIn,
       }}
     >
       {children}

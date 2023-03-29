@@ -1,5 +1,5 @@
 import { getBreeds } from '@/domain/breed/services/getBreeds';
-import type { I18nDictionary } from '@/i18n/types';
+import type { I18nDictionary } from '@/libs/i18n/types';
 import type { Metadata } from 'next';
 import { BreedsClientPage } from './clientPage';
 
@@ -8,7 +8,7 @@ export async function generateMetadata({
 }: {
   params: { lang: string };
 }): Promise<Metadata> {
-  const { dictionary } = await import(`@/i18n/dictionaries/${lang}`);
+  const { dictionary } = await import(`@/libs/i18n/dictionaries/${lang}`);
   const dict: I18nDictionary = dictionary;
 
   return {
