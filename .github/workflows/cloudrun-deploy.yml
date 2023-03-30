@@ -7,7 +7,8 @@ on:
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_ID }}
-  CLOUD_RUN_REGION: asia-northeast1
+  CLOUD_RUN_REGION_ASIA: asia-northeast1
+  CLOUD_RUN_REGION_US: us-west1
   REPO_NAME: cloudrun-next-app-38
   ENV_VARS_FILE: ./env-vars-dev.yml
 
@@ -33,12 +34,21 @@ jobs:
         run: docker build . --tag "gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
       - name: Push image to GCR
         run: docker push gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-      - name: Deploy
+      - name: Deploy to asia region
         run: |
-          gcloud run deploy $REPO_NAME --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
+          gcloud run deploy $REPO_NAME-$CLOUD_RUN_REGION_ASIA --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
             --project $CLOUD_RUN_PROJECT_ID \
             --platform managed \
-            --region $CLOUD_RUN_REGION \
+            --region $CLOUD_RUN_REGION_ASIA \
+            --allow-unauthenticated \
+            --env-vars-file $ENV_VARS_FILE \
+            --quiet
+      - name: Deploy to us region
+        run: |
+          gcloud run deploy $REPO_NAME-$CLOUD_RUN_REGION_US --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
+            --project $CLOUD_RUN_PROJECT_ID \
+            --platform managed \
+            --region $CLOUD_RUN_REGION_US \
             --allow-unauthenticated \
             --env-vars-file $ENV_VARS_FILE \
             --quiet
