@@ -1,4 +1,4 @@
-import { Header } from '@/domain/ui/components/Header';
+import { Header } from '@/ui/components/Header';
 import { Providers } from './providers';
 import '../reset.css';
 

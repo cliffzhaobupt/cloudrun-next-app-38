@@ -1,6 +1,6 @@
 import { useI18n } from '@/libs/i18n/hooks/useI18n';
-import Link from 'next/link';
 import React from 'react';
+import { InternalLink } from '../InternalLink';
 
 interface Props {
   isLoadingAuth: boolean;
@@ -22,13 +22,19 @@ export const Header: React.FC<Props> = ({
       <nav>
         <ul>
           <li>
-            <Link href="/breeds">{t('layout_breed_list_link')}</Link>
+            <InternalLink href="/breeds">
+              {t('layout_breed_list_link')}
+            </InternalLink>
           </li>
           <li>
-            <Link href="/bitcoin">{t('layout_bitcoin_link')}</Link>
+            <InternalLink href="/bitcoin">
+              {t('layout_bitcoin_link')}
+            </InternalLink>
           </li>
           <li>
-            <Link href="/">{t('layout_back_to_top_btn_label')}</Link>
+            <InternalLink href="/">
+              {t('layout_back_to_top_btn_label')}
+            </InternalLink>
           </li>
           <li>
             {isLoadingAuth && <span>Loading auth...</span>}
