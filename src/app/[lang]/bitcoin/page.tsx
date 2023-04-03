@@ -18,7 +18,7 @@ export async function generateMetadata({
 }
 
 export default async function BitcoinPage() {
-  const bitcoinInfo = await getBitcoin();
+  const fallbackData = await getBitcoin();
 
-  return <BitcoinClientPage bitcoinInfo={bitcoinInfo} />;
+  return <BitcoinClientPage fallbackData={fallbackData} />;
 }

@@ -9,3 +9,9 @@ export async function getBitcoin(): Promise<GetBitcoinResponse> {
 
   return res.json();
 }
+
+export async function getBitcoinSwrFetcher([_key]: [
+  string
+]): Promise<GetBitcoinResponse> {
+  return getBitcoin();
+}
