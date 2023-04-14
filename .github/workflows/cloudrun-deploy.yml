@@ -16,13 +16,17 @@ jobs:
   build-and-deploy:
     name: Deploy to Cloud Run
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - id: auth
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT_KEY }}
+          workload_identity_provider: projects/562262591781/locations/global/workloadIdentityPools/github-action-oidc-pool/providers/github-action-oidc-pool-provider
+          service_account: cloudrun-deploy-bot@fluid-brook-379710.iam.gserviceaccount.com
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
       - name: Enable the necessary APIs and enable docker auth
