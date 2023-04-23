@@ -44,7 +44,7 @@ jobs:
             --project $CLOUD_RUN_PROJECT_ID \
             --platform managed \
             --region $CLOUD_RUN_REGION_ASIA \
-            --allow-unauthenticated \
+            --ingress internal-and-cloud-load-balancing \
             --env-vars-file $ENV_VARS_FILE \
             --quiet
       - name: Deploy to us region
@@ -53,6 +53,6 @@ jobs:
             --project $CLOUD_RUN_PROJECT_ID \
             --platform managed \
             --region $CLOUD_RUN_REGION_US \
-            --allow-unauthenticated \
+            --ingress internal-and-cloud-load-balancing \
             --env-vars-file $ENV_VARS_FILE \
             --quiet
