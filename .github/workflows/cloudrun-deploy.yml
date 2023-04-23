@@ -7,18 +7,16 @@ on:
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_ID }}
-  CLOUD_RUN_REGION_ASIA: asia-northeast1
-  CLOUD_RUN_REGION_US: us-west1
   REPO_NAME: cloudrun-next-app-38
   ENV_VARS_FILE: ./env-vars-dev.yml
 
 jobs:
-  build-and-deploy:
-    name: Deploy to Cloud Run
+  build-and-push:
+    name: Build and push docker image to GCR
     runs-on: ubuntu-latest
     permissions:
-      contents: 'read'
-      id-token: 'write'
+      contents: read
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,21 +36,37 @@ jobs:
         run: docker build . --tag "gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
       - name: Push image to GCR
         run: docker push gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-      - name: Deploy to asia region
+  deploy:
+    name: Deploy image to Cloud Run services of different regions
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      matrix:
+        region: [asia-northeast1, us-west1]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - id: auth
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: projects/562262591781/locations/global/workloadIdentityPools/github-action-oidc-pool/providers/github-action-oidc-pool-provider
+          service_account: cloudrun-deploy-bot@fluid-brook-379710.iam.gserviceaccount.com
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+      - name: Enable the necessary APIs and enable docker auth
         run: |
-          gcloud run deploy $REPO_NAME-$CLOUD_RUN_REGION_ASIA --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
+          gcloud services enable containerregistry.googleapis.com
+          gcloud services enable run.googleapis.com
+          gcloud --quiet auth configure-docker
+      - name: Deploy to Cloud Run service
+        run: |
+          gcloud run deploy $REPO_NAME-${{ matrix.region }} --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
             --project $CLOUD_RUN_PROJECT_ID \
             --platform managed \
-            --region $CLOUD_RUN_REGION_ASIA \
-            --ingress internal-and-cloud-load-balancing \
-            --env-vars-file $ENV_VARS_FILE \
-            --quiet
-      - name: Deploy to us region
-        run: |
-          gcloud run deploy $REPO_NAME-$CLOUD_RUN_REGION_US --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
-            --project $CLOUD_RUN_PROJECT_ID \
-            --platform managed \
-            --region $CLOUD_RUN_REGION_US \
+            --region ${{ matrix.region }} \
             --ingress internal-and-cloud-load-balancing \
             --env-vars-file $ENV_VARS_FILE \
             --quiet
