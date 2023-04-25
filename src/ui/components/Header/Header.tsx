@@ -5,14 +5,12 @@ import { InternalLink } from '../InternalLink';
 interface Props {
   isLoadingAuth: boolean;
   isLoggedIn: boolean;
-  onClickLoginButton(): void;
   onClickLogoutButton(): void;
 }
 
 export const Header: React.FC<Props> = ({
   isLoadingAuth,
   isLoggedIn,
-  onClickLoginButton,
   onClickLogoutButton,
 }) => {
   const { t } = useI18n();
@@ -44,10 +42,17 @@ export const Header: React.FC<Props> = ({
                   Logout
                 </button>
               ) : (
-                <button type="button" onClick={onClickLoginButton}>
-                  Login
-                </button>
+                <InternalLink href="/login">
+                  {t('layout_login_link')}
+                </InternalLink>
               ))}
+          </li>
+          <li>
+            {!isLoadingAuth && !isLoggedIn && (
+              <InternalLink href="/register">
+                {t('layout_register_link')}
+              </InternalLink>
+            )}
           </li>
         </ul>
       </nav>

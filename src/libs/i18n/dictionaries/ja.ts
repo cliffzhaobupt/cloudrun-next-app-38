@@ -1,9 +1,15 @@
 export const dictionary = {
   layout_breed_list_link: 'ブリード一覧へ',
   layout_bitcoin_link: 'ビットコイン情報へ',
+  layout_login_link: 'ログイン',
+  layout_register_link: '新規登録',
   layout_back_to_top_btn_label: 'トップへ戻る',
   page_breed_list_title: 'ブリード一覧ページ',
   page_breed_list_description: 'これはブリード一覧ページです',
   page_bitcoin_title: 'ビットコイン情報ページ',
   page_bitcoin_description: 'これはビットコイン情報ページです',
+  page_login_title: 'ログイン',
+  page_login_description: 'これはログインページです',
+  page_register_title: '新規登録',
+  page_register_description: 'これは新規ユーザー登録ページです',
 };
