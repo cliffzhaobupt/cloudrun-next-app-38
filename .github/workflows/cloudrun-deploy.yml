@@ -8,7 +8,7 @@ on:
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_ID }}
   REPO_NAME: cloudrun-next-app-38
-  ENV_VARS_FILE: ./env-vars-dev.yml
+  ENV_VAR_FILE: .env-dev
 
 jobs:
   build-and-push:
@@ -29,6 +29,8 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
       - name: Docker auth
         run: gcloud --quiet auth configure-docker
+      - name: Set env variable file
+        run: mv $ENV_VAR_FILE .env
       - name: Build and tag image
         run: docker build . --tag "gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
       - name: Push image to GCR
@@ -60,5 +62,4 @@ jobs:
             --platform managed \
             --region ${{ matrix.region }} \
             --ingress internal-and-cloud-load-balancing \
-            --env-vars-file $ENV_VARS_FILE \
             --quiet
