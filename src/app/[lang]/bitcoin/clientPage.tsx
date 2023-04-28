@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useI18n } from '@/libs/i18n/hooks/useI18n';
-import { useGuestRedirect } from '@/libs/auth/hooks/useGuestRedirect';
 import type { GetBitcoinResponse } from '@/domain/bitcoin/apiTypes';
 import { useGetBitcoin } from '@/domain/bitcoin/hooks/useGetBitcoin';
 
@@ -12,8 +11,6 @@ interface Props {
 
 export const BitcoinClientPage: React.FC<Props> = ({ fallbackData }) => {
   const { t } = useI18n();
-
-  useGuestRedirect();
 
   const { data: bitcoinInfo } = useGetBitcoin({ fallbackData });
 

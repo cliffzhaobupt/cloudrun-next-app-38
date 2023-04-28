@@ -20,30 +20,4 @@ export function middleware(req: NextRequest) {
       new URL(`/${redirectLocale}${pathname === '/' ? '' : pathname}`, req.url)
     );
   }
-
-  // Basic認証
-  const basicAuth = req.headers.get('authorization');
-
-  if (basicAuth) {
-    const authValue = basicAuth.split(' ')[1];
-    const [user, pwd] = atob(authValue).split(':');
-
-    if (
-      user === process.env.BASIC_AUTH_USERNAME &&
-      pwd === process.env.BASIC_AUTH_PASSWORD
-    ) {
-      return NextResponse.next();
-    }
-  }
-
-  return NextResponse.json(
-    { message: 'Basic認証通ってへんやん！' },
-    {
-      status: 401,
-      statusText: 'Unauthorized',
-      headers: {
-        'www-authenticate': 'Basic',
-      },
-    }
-  );
 }
