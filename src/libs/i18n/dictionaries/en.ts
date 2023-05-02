@@ -12,4 +12,8 @@ export const dictionary = {
   page_login_description: 'This is user login page',
   page_register_title: 'Sign Up Page',
   page_register_description: 'This is user sign-up page',
+  page_global_error_title: 'Something went wrong!',
+  page_global_error_retry_button: 'Try again',
+  page_global_not_found_title: 'Not Found',
+  page_global_not_found_desc: 'Could not find requested resource',
 };

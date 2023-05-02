@@ -12,4 +12,8 @@ export const dictionary = {
   page_login_description: 'これはログインページです',
   page_register_title: '新規登録',
   page_register_description: 'これは新規ユーザー登録ページです',
+  page_global_error_title: 'エラーが発生しました',
+  page_global_error_retry_button: 'もう一回試す',
+  page_global_not_found_title: '404',
+  page_global_not_found_desc: 'お探しのリソースがみつかりませんでした',
 };

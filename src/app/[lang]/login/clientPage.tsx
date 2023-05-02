@@ -2,10 +2,17 @@
 
 import { useLogin } from '@/libs/auth/hooks/useLogin';
 import { useI18n } from '@/libs/i18n/hooks/useI18n';
+import { notFound, useSearchParams } from 'next/navigation';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 
 export const LoginClientPage: React.FC = () => {
   const { t } = useI18n();
+  const searchPrams = useSearchParams();
+  const shouldRedirectTo404 = searchPrams.has('404');
+
+  if (shouldRedirectTo404) {
+    notFound();
+  }
 
   const { isLoading, loggedInUserCredential, login } = useLogin();
 
